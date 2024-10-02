@@ -1,0 +1,77 @@
+# Copyright (C) 2023 advance-canonical-url
+# This file is distributed under the same license as the advance-canonical-url package.
+msgid ""
+msgstr ""
+"Project-Id-Version: advance-canonical-url\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: Usman Ali Qureshi <usman@usmanaliqureshi.com>\n"
+"Last-Translator: Usman Ali Qureshi <usman@usmanaliqureshi.com>\n"
+"Report-Msgid-Bugs-To: https://github.com/usmanaliqureshi/advance-canonical-url/issues\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: includes/advance-canonical-url.php:115
+msgid "Advance Canonical Settings"
+msgstr ""
+
+#: includes/advance-canonical-url.php:121
+msgid "Canonical Method"
+msgstr ""
+
+#: includes/advance-canonical-url.php:128
+msgid "Query Strings"
+msgstr ""
+
+#: includes/advance-canonical-url.php:142
+msgid "Select your desired settings"
+msgstr ""
+
+#: includes/advance-canonical-url.php:160
+msgid "Basic"
+msgstr ""
+
+#: includes/advance-canonical-url.php:167
+msgid "Advance"
+msgstr ""
+
+#: includes/advance-canonical-url.php:173
+msgid "Choose the method to display canonical url throughout your website. If you choose Advance then each post, page and custom post will have its own canonical url setting."
+msgstr ""
+
+#: includes/advance-canonical-url.php:191
+msgid "Yes"
+msgstr ""
+
+#: includes/advance-canonical-url.php:198
+msgid "No"
+msgstr ""
+
+#: includes/advance-canonical-url.php:204
+msgid "Do you want to remove query strings (the query sting displays right from the question mark: http://www.website.com/example.php?query=string)"
+msgstr ""
+
+#: includes/canonical-meta-box.php:64
+msgid "Advance Canonical URL Setting"
+msgstr ""
+
+#: includes/canonical-meta-box.php:169
+msgid "Default Canonical URL: "
+msgstr ""
+
+#: includes/canonical-meta-box.php:174
+msgid "This is the default canonical url of this item. Add a custom url below to override it."
+msgstr ""
+
+#: includes/canonical-meta-box.php:179
+msgid "Canonical URL: "
+msgstr ""
+
+#: includes/canonical-meta-box.php:183
+msgid "Add a custom canonical url"
+msgstr ""
