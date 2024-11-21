@@ -2,7 +2,7 @@
 Contributors: usmanaliqureshi
 Tags: canonical, url, canonical url, duplicate, duplicate content, content, avoid duplicate content, advance canonical url, seo
 Requires at least: 3.0
-Tested up to: 6.1.1
+Tested up to: 6.x
 Stable tag: 6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -18,6 +18,10 @@ A WordPress plugin to avoid duplicate content with respect to SEO throughout the
 2. Meta Box option for each post, page and custom post type.
 
 == Changelog ==
+
+= 1.0.3
+* Tested with WordPress 6.7.x
+* Tested with latest PHP versions
 
 = 1.0.2
 * Tested with WordPress 6.1.1
