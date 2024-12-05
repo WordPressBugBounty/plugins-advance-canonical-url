@@ -1,15 +1,16 @@
 === Advance Canonical URL ===
 Contributors: usmanaliqureshi
 Tags: canonical, url, canonical url, duplicate, duplicate content, content, avoid duplicate content, advance canonical url, seo
-Requires at least: 3.0
-Tested up to: 6.x
-Stable tag: 6.0
+Requires at least: 4.9
+Tested up to: 6.7.1
+Stable tag: 5.0
+Requires PHP: 7.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-A WordPress plugin to avoid duplicate content with respect to SEO throughout the website with advance settings.
+Advanced Canonical URL is a powerful WordPress plugin designed to enhance your website’s SEO by preventing duplicate content issues. With its advanced settings, you can easily configure canonical URLs across your site, ensuring search engines prioritize the right pages for better rankings and improved visibility.
 
 == Screenshots ==
 
@@ -18,6 +19,10 @@ A WordPress plugin to avoid duplicate content with respect to SEO throughout the
 2. Meta Box option for each post, page and custom post type.
 
 == Changelog ==
+
+= 1.0.4
+* Fixed a major issue with canonical URL
+* Tested with WordPress 6.7.x
 
 = 1.0.3
 * Tested with WordPress 6.7.x

@@ -256,9 +256,9 @@ if (!class_exists('advance_canonical_url')) {
              */
             $basic = '<!-- Advance Canonical URL (Basic) -->';
 	        if ( ! empty( $this->options['query_strings'] ) && 'no' === $this->options['query_strings'] ) {
-                $basic .= '<link rel="canonical" content="' . esc_url( get_bloginfo('url') . '' . $_SERVER['REQUEST_URI'] ). '">';
+                $basic .= '<link rel="canonical" href="' . esc_url( get_bloginfo('url') . '' . $_SERVER['REQUEST_URI'] ). '">';
             } else {
-                $basic .= '<link rel="canonical" content="' . esc_url( get_bloginfo('url') . '' . strtok($_SERVER['REQUEST_URI'], '?') ) . '">';
+                $basic .= '<link rel="canonical" href="' . esc_url( get_bloginfo('url') . '' . strtok($_SERVER['REQUEST_URI'], '?') ) . '">';
             }
             $basic .= '<!-- Advance Canonical URL -->';
 
@@ -266,7 +266,7 @@ if (!class_exists('advance_canonical_url')) {
              * Advance Canonical URL based on the Canonical Meta Box Option
              */
             $advance = '<!-- Advance Canonical URL (Advance) -->';
-            $advance .= '<link rel="canonical" content="' . $value . '">';
+            $advance .= '<link rel="canonical" href="' . $value . '">';
             $advance .= '<!-- Advance Canonical URL -->';
 
             switch (true) {
