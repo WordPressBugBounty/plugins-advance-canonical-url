@@ -1,9 +1,9 @@
 === Advance Canonical URL ===
 Contributors: usmanaliqureshi
-Tags: canonical, url, canonical url, duplicate, duplicate content, content, avoid duplicate content, advance canonical url, seo
+Tags: canonical, url, canonical url, duplicate, duplicate content, modern canonical url, seo
 Requires at least: 4.9
-Tested up to: 6.7.1
-Stable tag: 5.0
+Tested up to: 6.8.1
+Stable tag: 1.0.4
 Requires PHP: 7.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
