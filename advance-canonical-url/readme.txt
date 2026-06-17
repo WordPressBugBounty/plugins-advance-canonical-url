@@ -1,12 +1,12 @@
 === Advance Canonical URL ===
 Contributors: usmanaliqureshi
-Tags: canonical, url, canonical url, duplicate, duplicate content, modern canonical url, seo
+Tags: canonical, url, canonical url, duplicate content, seo
 Requires at least: 4.9
-Tested up to: 6.8.1
-Stable tag: 1.0.4
+Tested up to: 7.0
+Stable tag: 1.0.5
 Requires PHP: 7.3
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
@@ -20,7 +20,12 @@ Advanced Canonical URL is a powerful WordPress plugin designed to enhance your w
 
 == Changelog ==
 
-= 1.0.4
+= 1.0.5 =
+* Tested with WordPress 7.0
+* Translated into 5 popular languages (Spanish, French, German, Italian, Portuguese)
+* Fixed issues reported by Plugin Check Plugin (PCP)
+
+= 1.0.4 =
 * Fixed a major issue with canonical URL
 * Tested with WordPress 6.7.x
 

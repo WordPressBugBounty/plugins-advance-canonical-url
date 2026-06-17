@@ -112,20 +112,20 @@ if (!class_exists('advance_canonical_url')) {
             );
             add_settings_section(
                 'settings_advance_canonical',
-                __('Advance Canonical Settings', 'acu'),
+                __('Advance Canonical Settings', 'advance-canonical-url'),
                 array($this, 'acu_section_information'),
                 'acu-setting-admin'
             );
             add_settings_field(
                 'canonical_method',
-                __('Canonical Method', 'acu'),
+                __('Canonical Method', 'advance-canonical-url'),
                 array($this, 'select_canonical_method'),
                 'acu-setting-admin',
                 'settings_advance_canonical'
             );
             add_settings_field(
                 'query_strings',
-                __('Query Strings', 'acu'),
+                __('Query Strings', 'advance-canonical-url'),
                 array($this, 'select_query_strings'),
                 'acu-setting-admin',
                 'settings_advance_canonical'
@@ -139,7 +139,7 @@ if (!class_exists('advance_canonical_url')) {
         {
             ?>
 
-            <h4><?php esc_html_e('Select your desired settings', 'acu'); ?></h4>
+            <h4><?php esc_html_e('Select your desired settings', 'advance-canonical-url'); ?></h4>
 
             <?php
         }
@@ -157,20 +157,20 @@ if (!class_exists('advance_canonical_url')) {
                 <option
                     value="basic" <?php echo isset($this->options['canonical_method']) ? (selected($this->options['canonical_method'], 'basic', false)) : (''); ?>>
 
-                    <?php esc_html_e('Basic', 'acu'); ?>
+                    <?php esc_html_e('Basic', 'advance-canonical-url'); ?>
 
                 </option>
 
                 <option
                     value="advance" <?php echo isset($this->options['canonical_method']) ? (selected($this->options['canonical_method'], 'advance', false)) : (''); ?>>
 
-                    <?php esc_html_e('Advance', 'acu'); ?>
+                    <?php esc_html_e('Advance', 'advance-canonical-url'); ?>
 
                 </option>
 
             </select>
 
-            <p class="acu-description"><?php esc_html_e('Choose the method to display canonical url throughout your website. If you choose Advance then each post, page and custom post will have its own canonical url setting.', 'acu'); ?></p>
+            <p class="acu-description"><?php esc_html_e('Choose the method to display canonical url throughout your website. If you choose Advance then each post, page and custom post will have its own canonical url setting.', 'advance-canonical-url'); ?></p>
 
             <?php
         }
@@ -188,20 +188,20 @@ if (!class_exists('advance_canonical_url')) {
                 <option
                     value="yes" <?php echo isset($this->options['query_strings']) ? (selected($this->options['query_strings'], 'yes', false)) : (''); ?>>
 
-                    <?php esc_html_e('Yes', 'acu'); ?>
+                    <?php esc_html_e('Yes', 'advance-canonical-url'); ?>
 
                 </option>
 
                 <option
                     value="no" <?php echo isset($this->options['query_strings']) ? (selected($this->options['query_strings'], 'no', false)) : (''); ?>>
 
-                    <?php esc_html_e('No', 'acu'); ?>
+                    <?php esc_html_e('No', 'advance-canonical-url'); ?>
 
                 </option>
 
             </select>
 
-            <p class="acu-description"><?php esc_html_e('Do you want to remove query strings (the query sting displays right from the question mark: http://www.website.com/example.php?query=string)', 'acu'); ?></p>
+            <p class="acu-description"><?php esc_html_e('Do you want to remove query strings (the query sting displays right from the question mark: http://www.website.com/example.php?query=string)', 'advance-canonical-url'); ?></p>
 
             <?php
         }
@@ -271,10 +271,12 @@ if (!class_exists('advance_canonical_url')) {
 
             switch (true) {
                 case (is_front_page()):
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     echo $basic;
                     break;
 
                 case (is_home()):
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     echo $basic;
                     break;
 
@@ -300,8 +302,10 @@ if (!class_exists('advance_canonical_url')) {
         public function acu_render_canonical_url($basic, $advance, $value)
         {
             if ('basic' === $this->options['canonical_method']) {
+                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 echo $basic;
             } else {
+                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 echo (!empty($value)) ? $advance : $basic;
             }
         }
@@ -309,4 +313,4 @@ if (!class_exists('advance_canonical_url')) {
 
 }
 
-$ACU = new advance_canonical_url();
+$acu_instance = new advance_canonical_url();

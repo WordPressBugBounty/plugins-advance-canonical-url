@@ -61,7 +61,7 @@ if (!class_exists('advance_canonical_meta_box')) {
             if (in_array($post_type, $post_types)) {
                 add_meta_box(
                     'acu_canonical_meta_box',
-                    __('Advance Canonical URL Setting', 'acu'),
+                    __('Advance Canonical URL Setting', 'advance-canonical-url'),
                     array($this, 'acu_render_meta_box'),
                     $post_type,
                     'advanced',
@@ -86,11 +86,12 @@ if (!class_exists('advance_canonical_meta_box')) {
             /**
              * Check if our nonce is set.
              */
+            // phpcs:ignore WordPress.Security.NonceVerification.Missing
             if (!isset($_POST['acu_canonical_meta_box_nonce'])) {
                 return $post_id;
             }
 
-            $nonce = $_POST['acu_canonical_meta_box_nonce'];
+            $nonce = sanitize_text_field( wp_unslash( $_POST['acu_canonical_meta_box_nonce'] ) );
 
             /**
              * Verify that the nonce is valid.
@@ -110,7 +111,7 @@ if (!class_exists('advance_canonical_meta_box')) {
             /**
              * Check the user's permissions.
              */
-            if ('page' == $_POST['post_type']) {
+            if (isset($_POST['post_type']) && 'page' === sanitize_text_field(wp_unslash($_POST['post_type']))) {
                 if (!current_user_can('edit_page', $post_id)) {
                     return $post_id;
                 }
@@ -125,7 +126,7 @@ if (!class_exists('advance_canonical_meta_box')) {
              *
              * Escaping the DATA for URL.
              */
-            $acu_adv_can_url_data_escaped = esc_url_raw($_POST['acu_adv_can_url']);
+            $acu_adv_can_url_data_escaped = esc_url_raw(wp_unslash($_POST['acu_adv_can_url']));
 
             /**
              * Sanitize the ESCAPED DATA further.
@@ -166,21 +167,21 @@ if (!class_exists('advance_canonical_meta_box')) {
                 ?>
                 <div class="acu_default_can_url">
                     <label for="default_can_url" class="default_can_url">
-                        <?php _e('Default Canonical URL: ', 'acu'); ?>
+                        <?php esc_html_e('Default Canonical URL: ', 'advance-canonical-url'); ?>
                     </label>
 
                     <p id="default_can_url"><?php echo esc_attr($default_can_url); ?></p>
 
-                    <p class="default_can_url_desc"><?php _e('This is the default canonical url of this item. Add a custom url below to override it.', 'acu'); ?></p>
+                    <p class="default_can_url_desc"><?php esc_html_e('This is the default canonical url of this item. Add a custom url below to override it.', 'advance-canonical-url'); ?></p>
                 </div>
             <?php } ?>
             <div class="acu_meta_box_container">
                 <label for="acu_adv_can_url" class="acu_adv_can_url">
-                    <?php _e('Canonical URL: ', 'acu'); ?>
+                    <?php esc_html_e('Canonical URL: ', 'advance-canonical-url'); ?>
                 </label>
                 <input type="text" id="acu_adv_can_url" name="acu_adv_can_url"
                        value="<?php echo esc_attr($value); ?>"
-                       size="25" placeholder="<?php _e('Add a custom canonical url', 'acu'); ?>"/>
+                       size="25" placeholder="<?php esc_attr_e('Add a custom canonical url', 'advance-canonical-url'); ?>"/>
             </div>
             <?php
         }
@@ -188,4 +189,4 @@ if (!class_exists('advance_canonical_meta_box')) {
 
 }
 
-$ACU_Meta_Box = new advance_canonical_meta_box();
+$acu_meta_box = new advance_canonical_meta_box();

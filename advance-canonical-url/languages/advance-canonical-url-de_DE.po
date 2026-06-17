@@ -12,34 +12,34 @@ msgstr ""
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: includes/advance-canonical-url.php:115
 msgid "Advance Canonical Settings"
-msgstr ""
+msgstr "Erweiterte Kanonische Einstellungen"
 
 #: includes/advance-canonical-url.php:121
 msgid "Canonical Method"
-msgstr ""
+msgstr "Kanonische Methode"
 
 #: includes/advance-canonical-url.php:128
 msgid "Query Strings"
-msgstr ""
+msgstr "Abfrage-Strings"
 
 #: includes/advance-canonical-url.php:142
 msgid "Select your desired settings"
-msgstr ""
+msgstr "Wählen Sie Ihre gewünschten Einstellungen"
 
 #: includes/advance-canonical-url.php:160
 msgid "Basic"
-msgstr ""
+msgstr "Standard"
 
 #: includes/advance-canonical-url.php:167
 msgid "Advance"
-msgstr ""
+msgstr "Erweitert"
 
 #: includes/advance-canonical-url.php:173
 msgid ""
@@ -50,11 +50,11 @@ msgstr ""
 
 #: includes/advance-canonical-url.php:191
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: includes/advance-canonical-url.php:198
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #: includes/advance-canonical-url.php:204
 msgid ""
@@ -64,11 +64,11 @@ msgstr ""
 
 #: includes/canonical-meta-box.php:64
 msgid "Advance Canonical URL Setting"
-msgstr ""
+msgstr "Erweiterte Einstellung der Kanonischen URL"
 
 #: includes/canonical-meta-box.php:170
 msgid "Default Canonical URL: "
-msgstr ""
+msgstr "Standard Kanonische URL: "
 
 #: includes/canonical-meta-box.php:175
 msgid ""
@@ -78,8 +78,8 @@ msgstr ""
 
 #: includes/canonical-meta-box.php:180
 msgid "Canonical URL: "
-msgstr ""
+msgstr "Kanonische URL: "
 
 #: includes/canonical-meta-box.php:184
 msgid "Add a custom canonical url"
-msgstr ""
+msgstr "Eine benutzerdefinierte kanonische URL hinzufügen"
