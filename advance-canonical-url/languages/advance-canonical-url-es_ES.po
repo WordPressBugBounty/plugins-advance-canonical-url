@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-17 09:48+0500\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/trunk\n"
+"POT-Creation-Date: 2026-08-14T19:30:11+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,69 +17,363 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: includes/advance-canonical-url.php:115
-msgid "Advance Canonical Settings"
-msgstr "Configuración Canónica Avanzada"
-
-#: includes/advance-canonical-url.php:121
-msgid "Canonical Method"
-msgstr "Método Canónico"
-
-#: includes/advance-canonical-url.php:128
-msgid "Query Strings"
-msgstr "Cadenas de Consulta"
-
-#: includes/advance-canonical-url.php:142
-msgid "Select your desired settings"
-msgstr "Seleccione sus configuraciones deseadas"
-
-#: includes/advance-canonical-url.php:160
-msgid "Basic"
-msgstr "Básico"
-
-#: includes/advance-canonical-url.php:167
-msgid "Advance"
-msgstr "Avanzado"
-
-#: includes/advance-canonical-url.php:173
-msgid ""
-"Choose the method to display canonical url throughout your website. If you "
-"choose Advance then each post, page and custom post will have its own "
-"canonical url setting."
-msgstr ""
-
-#: includes/advance-canonical-url.php:191
-msgid "Yes"
-msgstr "Sí"
-
-#: includes/advance-canonical-url.php:198
-msgid "No"
-msgstr "No"
-
-#: includes/advance-canonical-url.php:204
-msgid ""
-"Do you want to remove query strings (the query sting displays right from the "
-"question mark: http://www.website.com/example.php?query=string)"
-msgstr ""
-
-#: includes/canonical-meta-box.php:64
-msgid "Advance Canonical URL Setting"
+#. Plugin Name of the plugin
+#: functions.php includes/advance-canonical-url.php:69
+#: includes/advance-canonical-url.php:206
+#: includes/advance-canonical-url.php:210
+#, fuzzy
+msgid "Advance Canonical URL"
 msgstr "Configuración de URL Canónica Avanzada"
 
-#: includes/canonical-meta-box.php:170
-msgid "Default Canonical URL: "
-msgstr "URL Canónica Predeterminada: "
-
-#: includes/canonical-meta-box.php:175
-msgid ""
-"This is the default canonical url of this item. Add a custom url below to "
-"override it."
+#. Plugin URI of the plugin
+#: functions.php
+msgid "https://github.com/usmanaliqureshi/advance-canonical-url"
 msgstr ""
 
-#: includes/canonical-meta-box.php:180
-msgid "Canonical URL: "
+#. Description of the plugin
+#: functions.php
+msgid ""
+"Control site-wide canonical URLs and optionally override them for individual "
+"posts, pages, and public post types."
+msgstr ""
+
+#. Author of the plugin
+#: functions.php
+msgid "Usman Ali Qureshi"
+msgstr ""
+
+#. Author URI of the plugin
+#: functions.php
+msgid "https://www.usmanaliqureshi.com"
+msgstr ""
+
+#: includes/advance-canonical-url.php:70 includes/canonical-meta-box.php:66
+#, fuzzy
+msgid "Canonical URL"
 msgstr "URL Canónica: "
 
-#: includes/canonical-meta-box.php:184
-msgid "Add a custom canonical url"
+#: includes/advance-canonical-url.php:102
+msgid "Saving..."
+msgstr ""
+
+#: includes/advance-canonical-url.php:103
+#: includes/advance-canonical-url.php:509
+msgid "Saved"
+msgstr ""
+
+#: includes/advance-canonical-url.php:104
+msgid "Using standard save..."
+msgstr ""
+
+#: includes/advance-canonical-url.php:110
+msgid "Opening secure checkout..."
+msgstr ""
+
+#: includes/advance-canonical-url.php:111
+msgid "Support checkout is temporarily unavailable. Please try again later."
+msgstr ""
+
+#: includes/advance-canonical-url.php:112
+msgid "Thank you for supporting Advance Canonical URL."
+msgstr ""
+
+#: includes/advance-canonical-url.php:127
+msgid "Supporter"
+msgstr ""
+
+#: includes/advance-canonical-url.php:129
+msgid "A small thank-you that helps keep the plugin maintained."
+msgstr ""
+
+#: includes/advance-canonical-url.php:134
+msgid "Backer"
+msgstr ""
+
+#: includes/advance-canonical-url.php:136
+msgid "Back ongoing compatibility work, fixes, and improvements."
+msgstr ""
+
+#: includes/advance-canonical-url.php:140
+msgid "Sponsor"
+msgstr ""
+
+#: includes/advance-canonical-url.php:142
+msgid "Sponsor continued development and long-term plugin quality."
+msgstr ""
+
+#: includes/advance-canonical-url.php:146
+msgid "Agency Sponsor"
+msgstr ""
+
+#: includes/advance-canonical-url.php:148
+msgid "Fund dependable maintenance for the WordPress community."
+msgstr ""
+
+#: includes/advance-canonical-url.php:163
+#: includes/advance-canonical-url.php:219
+msgid "Settings"
+msgstr ""
+
+#: includes/advance-canonical-url.php:197
+#: includes/advance-canonical-url.php:296
+msgid "Per-content overrides"
+msgstr ""
+
+#: includes/advance-canonical-url.php:197
+#: includes/advance-canonical-url.php:246
+#: includes/advance-canonical-url.php:295
+msgid "Automatic"
+msgstr ""
+
+#: includes/advance-canonical-url.php:198
+#: includes/advance-canonical-url.php:297
+msgid "Removed"
+msgstr ""
+
+#: includes/advance-canonical-url.php:198
+#: includes/advance-canonical-url.php:298
+msgid "Preserved"
+msgstr ""
+
+#: includes/advance-canonical-url.php:202
+msgid "Discover more focused WordPress tools from the same developer."
+msgstr ""
+
+#: includes/advance-canonical-url.php:203
+msgid "Choose how canonical URLs are generated across your site."
+msgstr ""
+
+#: includes/advance-canonical-url.php:213
+msgid "Canonical output active"
+msgstr ""
+
+#: includes/advance-canonical-url.php:216
+msgid "Plugin pages"
+msgstr ""
+
+#: includes/advance-canonical-url.php:223
+msgid "More Plugins"
+msgstr ""
+
+#: includes/advance-canonical-url.php:236
+#, fuzzy
+msgid "Canonical strategy"
+msgstr "Método Canónico"
+
+#: includes/advance-canonical-url.php:237
+msgid "Select the level of control you need."
+msgstr ""
+
+#: includes/advance-canonical-url.php:247
+msgid "Generate a canonical URL from each public URL."
+msgstr ""
+
+#: includes/advance-canonical-url.php:256
+msgid "Custom control"
+msgstr ""
+
+#: includes/advance-canonical-url.php:257
+msgid "Enable optional overrides in each content editor."
+msgstr ""
+
+#: includes/advance-canonical-url.php:268
+#: includes/advance-canonical-url.php:307
+#, fuzzy
+msgid "Query parameters"
+msgstr "Cadenas de Consulta"
+
+#: includes/advance-canonical-url.php:269
+msgid "Keep tracking and filter parameters out of canonical URLs."
+msgstr ""
+
+#: includes/advance-canonical-url.php:275
+msgid "Remove query parameters"
+msgstr ""
+
+#: includes/advance-canonical-url.php:276
+msgid "Recommended for stable, duplicate-free canonical URLs."
+msgstr ""
+
+#: includes/advance-canonical-url.php:287
+#, fuzzy
+msgid "Save Settings"
+msgstr "Cadenas de Consulta"
+
+#: includes/advance-canonical-url.php:300
+msgid "Current policy"
+msgstr ""
+
+#: includes/advance-canonical-url.php:303
+msgid "Strategy"
+msgstr ""
+
+#: includes/advance-canonical-url.php:311
+msgid "Fallback"
+msgstr ""
+
+#: includes/advance-canonical-url.php:312 includes/canonical-meta-box.php:132
+msgid "Automatic URL"
+msgstr ""
+
+#: includes/advance-canonical-url.php:315
+msgid "Empty custom fields always fall back to the automatic canonical URL."
+msgstr ""
+
+#: includes/advance-canonical-url.php:337
+msgid "Server Info"
+msgstr ""
+
+#: includes/advance-canonical-url.php:338
+msgid ""
+"Inspect server, PHP, database, caching, and WordPress diagnostics from one "
+"admin dashboard."
+msgstr ""
+
+#: includes/advance-canonical-url.php:344
+msgid "MetaViewer - Debug Meta Data"
+msgstr ""
+
+#: includes/advance-canonical-url.php:345
+msgid ""
+"Inspect post, user, and term metadata while debugging WordPress content and "
+"integrations."
+msgstr ""
+
+#: includes/advance-canonical-url.php:351
+msgid "Randomize Password"
+msgstr ""
+
+#: includes/advance-canonical-url.php:352
+msgid ""
+"Generate strong randomized passwords for account creation and password reset "
+"workflows."
+msgstr ""
+
+#: includes/advance-canonical-url.php:358
+msgid "Fusion Pricing Tables"
+msgstr ""
+
+#: includes/advance-canonical-url.php:359
+msgid ""
+"Build flexible Elementor pricing tables with 15 ready-made skins, billing "
+"toggles, ribbons, and responsive controls."
+msgstr ""
+
+#: includes/advance-canonical-url.php:368
+msgid "More Plugins by Usman Ali Qureshi"
+msgstr ""
+
+#: includes/advance-canonical-url.php:369
+msgid ""
+"Small, focused tools built for practical WordPress administration and "
+"development."
+msgstr ""
+
+#: includes/advance-canonical-url.php:385
+#: includes/advance-canonical-url.php:398
+msgid "Active"
+msgstr ""
+
+#: includes/advance-canonical-url.php:387
+msgid "Installed"
+msgstr ""
+
+#: includes/advance-canonical-url.php:389
+msgid "Available"
+msgstr ""
+
+#: includes/advance-canonical-url.php:401
+msgid "Activate"
+msgstr ""
+
+#: includes/advance-canonical-url.php:404
+msgid "Install Now"
+msgstr ""
+
+#: includes/advance-canonical-url.php:408
+msgid "View details"
+msgstr ""
+
+#: includes/advance-canonical-url.php:427
+msgid "Support"
+msgstr ""
+
+#: includes/advance-canonical-url.php:432
+msgid "Close support options"
+msgstr ""
+
+#: includes/advance-canonical-url.php:439
+#, fuzzy
+msgid "Support Advance Canonical URL"
+msgstr "Configuración de URL Canónica Avanzada"
+
+#: includes/advance-canonical-url.php:440
+msgid ""
+"Choose any one-time amount that feels right. Every feature stays free for "
+"everyone."
+msgstr ""
+
+#: includes/advance-canonical-url.php:478
+msgid ""
+"The canonical strategy was reset because the submitted value was invalid."
+msgstr ""
+
+#: includes/advance-canonical-url.php:483
+msgid ""
+"The query parameter setting was reset because the submitted value was "
+"invalid."
+msgstr ""
+
+#: includes/advance-canonical-url.php:497
+msgid "You are not allowed to change these settings."
+msgstr ""
+
+#: includes/canonical-meta-box.php:126
+#, fuzzy
+msgid "Custom canonical active"
 msgstr "Agregar una url canónica personalizada"
+
+#: includes/canonical-meta-box.php:126
+#, fuzzy
+msgid "Using automatic canonical"
+msgstr "Agregar una url canónica personalizada"
+
+#: includes/canonical-meta-box.php:127
+msgid "Search engines will receive one preferred URL for this content."
+msgstr ""
+
+#: includes/canonical-meta-box.php:137
+#, fuzzy
+msgid "Custom canonical URL"
+msgstr "URL Canónica: "
+
+#: includes/canonical-meta-box.php:138
+msgid "https://example.com/preferred-page/"
+msgstr ""
+
+#: includes/canonical-meta-box.php:139
+msgid ""
+"Enter a complete HTTP or HTTPS URL. Clear the field to restore the automatic "
+"URL."
+msgstr ""
+
+#~ msgid "Advance Canonical Settings"
+#~ msgstr "Configuración Canónica Avanzada"
+
+#~ msgid "Select your desired settings"
+#~ msgstr "Seleccione sus configuraciones deseadas"
+
+#~ msgid "Basic"
+#~ msgstr "Básico"
+
+#~ msgid "Advance"
+#~ msgstr "Avanzado"
+
+#~ msgid "Yes"
+#~ msgstr "Sí"
+
+#~ msgid "No"
+#~ msgstr "No"
+
+#~ msgid "Default Canonical URL: "
+#~ msgstr "URL Canónica Predeterminada: "

@@ -1,192 +1,145 @@
 <?php
 /**
- * Intruders aren't allowed.
+ * Per-content canonical URL controls.
+ *
+ * @package advance-canonical-url
  */
-if (!defined('ABSPATH')) {
-    exit;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
-if (!class_exists('advance_canonical_meta_box')) {
+if ( ! class_exists( 'advance_canonical_meta_box' ) ) {
+	class advance_canonical_meta_box {
 
-    class advance_canonical_meta_box
-    {
-        private $options;
+		/**
+		 * Registers meta box hooks when custom control is enabled.
+		 */
+		public function __construct() {
+			$options = advance_canonical_url::acu_get_options();
 
-        /**
-         * Hook into the appropriate actions when the class is constructed.
-         */
-        public function __construct()
-        {
-            $this->options = get_option('acu_options');
-	        $canonical_method = 'basic';
-	        if ( ! empty( $this->options['canonical_method'] ) ) {
-		        $canonical_method = $this->options['canonical_method'];
-	        }
+			if ( 'advance' !== $options['canonical_method'] ) {
+				return;
+			}
 
-            if ('advance' === $canonical_method) {
-                add_action('admin_enqueue_scripts', array($this, 'acu_admin_style'));
-                add_action('load-post.php', array($this, 'acu_meta_box_init'));
-                add_action('load-post-new.php', array($this, 'acu_meta_box_init'));
-            }
-        }
+			add_action( 'admin_enqueue_scripts', array( $this, 'acu_admin_style' ) );
+			add_action( 'add_meta_boxes', array( $this, 'acu_add_meta_box' ) );
+			add_action( 'save_post', array( $this, 'acu_save_meta_box' ) );
+		}
 
-        public function acu_admin_style()
-        {
-            wp_register_style('acu_admin-styles', plugin_dir_url(__DIR__) . 'css/acu_admin.css', false, '1.0.0');
-            wp_enqueue_style('acu_admin-styles');
-        }
+		/**
+		 * Loads meta box styles on content editor screens.
+		 *
+		 * @param string $hook_suffix Current admin page hook.
+		 */
+		public function acu_admin_style( $hook_suffix ) {
+			if ( ! in_array( $hook_suffix, array( 'post.php', 'post-new.php' ), true ) ) {
+				return;
+			}
 
-        /**
-         * Meta Box Initialization
-         */
-        public function acu_meta_box_init()
-        {
-            add_action('add_meta_boxes', array($this, 'acu_add_meta_box'));
-            add_action('save_post', array($this, 'acu_save_meta_box'));
-        }
+			$style_path    = ACU_PLUGIN_DIR . 'css/acu_admin.css';
+			$style_version = file_exists( $style_path ) ? (string) filemtime( $style_path ) : ACU_VERSION;
 
-        /**
-         * Adds the meta box container.
-         * @param $post_type
-         */
-        public function acu_add_meta_box($post_type)
-        {
-            /**
-             * Display the meta-box everywhere
-             */
-            $default_post_types = array('post', 'page');
-            $custom_post_types = get_post_types();
-            $post_types = array_merge($default_post_types, $custom_post_types);
+			wp_enqueue_style( 'acu-admin-styles', ACU_PLUGIN_URL . 'css/acu_admin.css', array(), $style_version );
+		}
 
-            if (in_array($post_type, $post_types)) {
-                add_meta_box(
-                    'acu_canonical_meta_box',
-                    __('Advance Canonical URL Setting', 'advance-canonical-url'),
-                    array($this, 'acu_render_meta_box'),
-                    $post_type,
-                    'advanced',
-                    'high'
-                );
-            }
-        }
+		/**
+		 * Adds the canonical URL box to public content types.
+		 *
+		 * @param string $post_type Current post type.
+		 */
+		public function acu_add_meta_box( $post_type ) {
+			$post_types = get_post_types(
+				array(
+					'public'  => true,
+					'show_ui' => true,
+				),
+				'names'
+			);
 
-        /**
-         * Save the meta when the post is saved.
-         * @param int $post_id The ID of the post being saved.
-         * @return mixed
-         */
-        public function acu_save_meta_box($post_id)
-        {
+			if ( ! in_array( $post_type, $post_types, true ) ) {
+				return;
+			}
 
-            /*
-            * We need to verify this came from the our screen and with proper authorization,
-            * because save_post can be triggered at other times.
-            */
+			add_meta_box(
+				'acu_canonical_meta_box',
+				esc_html__( 'Canonical URL', 'advance-canonical-url' ),
+				array( $this, 'acu_render_meta_box' ),
+				$post_type,
+				'advanced',
+				'high'
+			);
+		}
 
-            /**
-             * Check if our nonce is set.
-             */
-            // phpcs:ignore WordPress.Security.NonceVerification.Missing
-            if (!isset($_POST['acu_canonical_meta_box_nonce'])) {
-                return $post_id;
-            }
+		/**
+		 * Saves a per-content canonical URL.
+		 *
+		 * @param int $post_id Post ID.
+		 */
+		public function acu_save_meta_box( $post_id ) {
+			if ( ! isset( $_POST['acu_canonical_meta_box_nonce'], $_POST['acu_adv_can_url'] ) ) {
+				return;
+			}
 
-            $nonce = sanitize_text_field( wp_unslash( $_POST['acu_canonical_meta_box_nonce'] ) );
+			$nonce = sanitize_text_field( wp_unslash( $_POST['acu_canonical_meta_box_nonce'] ) );
 
-            /**
-             * Verify that the nonce is valid.
-             */
-            if (!wp_verify_nonce($nonce, 'acu_inner_custom_box')) {
-                return $post_id;
-            }
+			if ( ! wp_verify_nonce( $nonce, 'acu_inner_custom_box' ) ) {
+				return;
+			}
 
-            /*
-            * If this is an autosave, our form has not been submitted,
-            * so we don't want to do anything.
-            */
-            if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-                return $post_id;
-            }
+			if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || wp_is_post_revision( $post_id ) ) {
+				return;
+			}
 
-            /**
-             * Check the user's permissions.
-             */
-            if (isset($_POST['post_type']) && 'page' === sanitize_text_field(wp_unslash($_POST['post_type']))) {
-                if (!current_user_can('edit_page', $post_id)) {
-                    return $post_id;
-                }
-            } else {
-                if (!current_user_can('edit_post', $post_id)) {
-                    return $post_id;
-                }
-            }
+			if ( ! current_user_can( 'edit_post', $post_id ) ) {
+				return;
+			}
 
-            /**
-             * OK, it's safe for us to save the data now.
-             *
-             * Escaping the DATA for URL.
-             */
-            $acu_adv_can_url_data_escaped = esc_url_raw(wp_unslash($_POST['acu_adv_can_url']));
+			$url = trim( esc_url_raw( wp_unslash( $_POST['acu_adv_can_url'] ), array( 'http', 'https' ) ) );
 
-            /**
-             * Sanitize the ESCAPED DATA further.
-             */
-            $acu_adv_can_url_data = sanitize_text_field( $acu_adv_can_url_data_escaped );
+			if ( '' === $url ) {
+				delete_post_meta( $post_id, '_acu_can_url_value' );
+				return;
+			}
 
-            /**
-             * Update the meta field.
-             */
-            update_post_meta($post_id, '_acu_can_url_value', $acu_adv_can_url_data);
-        }
+			if ( advance_canonical_url::acu_is_valid_canonical_url( $url ) ) {
+				update_post_meta( $post_id, '_acu_can_url_value', $url );
+			}
+		}
 
+		/**
+		 * Renders the canonical URL meta box.
+		 *
+		 * @param WP_Post $post Current post.
+		 */
+		public function acu_render_meta_box( $post ) {
+			wp_nonce_field( 'acu_inner_custom_box', 'acu_canonical_meta_box_nonce' );
 
-        /**
-         * Render Meta Box content.
-         * @param WP_Post $post The post object.
-         */
-        public function acu_render_meta_box($post)
-        {
+			$value       = get_post_meta( $post->ID, '_acu_can_url_value', true );
+			$default_url = get_permalink( $post );
+			$has_custom  = is_string( $value ) && '' !== $value;
+			?>
+			<div class="acu-meta-box">
+				<div class="acu-meta-status">
+					<span class="acu-meta-status-icon" aria-hidden="true"><?php echo acu_get_icon( $has_custom ? 'link' : 'sparkles' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+					<div>
+						<strong><?php echo $has_custom ? esc_html__( 'Custom canonical active', 'advance-canonical-url' ) : esc_html__( 'Using automatic canonical', 'advance-canonical-url' ); ?></strong>
+						<span><?php esc_html_e( 'Search engines will receive one preferred URL for this content.', 'advance-canonical-url' ); ?></span>
+					</div>
+				</div>
 
-            /**
-             * Add an nonce field so we can check for it later.
-             */
-            wp_nonce_field('acu_inner_custom_box', 'acu_canonical_meta_box_nonce');
+				<div class="acu-default-url">
+					<span><?php esc_html_e( 'Automatic URL', 'advance-canonical-url' ); ?></span>
+					<code><?php echo esc_html( $default_url ); ?></code>
+				</div>
 
-            /**
-             * Use get_post_meta to retrieve an existing value from the database.
-             */
-            $value = get_post_meta($post->ID, '_acu_can_url_value', true);
-
-            $default_can_url = get_permalink();
-
-            /**
-             * Display the form, using the current value.
-             */
-
-            if (empty($value)) {
-                ?>
-                <div class="acu_default_can_url">
-                    <label for="default_can_url" class="default_can_url">
-                        <?php esc_html_e('Default Canonical URL: ', 'advance-canonical-url'); ?>
-                    </label>
-
-                    <p id="default_can_url"><?php echo esc_attr($default_can_url); ?></p>
-
-                    <p class="default_can_url_desc"><?php esc_html_e('This is the default canonical url of this item. Add a custom url below to override it.', 'advance-canonical-url'); ?></p>
-                </div>
-            <?php } ?>
-            <div class="acu_meta_box_container">
-                <label for="acu_adv_can_url" class="acu_adv_can_url">
-                    <?php esc_html_e('Canonical URL: ', 'advance-canonical-url'); ?>
-                </label>
-                <input type="text" id="acu_adv_can_url" name="acu_adv_can_url"
-                       value="<?php echo esc_attr($value); ?>"
-                       size="25" placeholder="<?php esc_attr_e('Add a custom canonical url', 'advance-canonical-url'); ?>"/>
-            </div>
-            <?php
-        }
-    }
-
+				<div class="acu-custom-field">
+					<label for="acu_adv_can_url"><?php esc_html_e( 'Custom canonical URL', 'advance-canonical-url' ); ?></label>
+					<input type="url" id="acu_adv_can_url" name="acu_adv_can_url" value="<?php echo esc_attr( $value ); ?>" placeholder="<?php esc_attr_e( 'https://example.com/preferred-page/', 'advance-canonical-url' ); ?>" inputmode="url" />
+					<p><?php esc_html_e( 'Enter a complete HTTP or HTTPS URL. Clear the field to restore the automatic URL.', 'advance-canonical-url' ); ?></p>
+				</div>
+			</div>
+			<?php
+		}
+	}
 }
-
-$acu_meta_box = new advance_canonical_meta_box();
