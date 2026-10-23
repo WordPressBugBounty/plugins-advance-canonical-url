@@ -3,7 +3,7 @@
  * Plugin Name: Advance Canonical URL
  * Plugin URI: https://github.com/usmanaliqureshi/advance-canonical-url
  * Description: Control site-wide canonical URLs and optionally override them for individual posts, pages, and public post types.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Requires at least: 5.2
  * Requires PHP: 7.3
  * Author: Usman Ali Qureshi
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ACU_VERSION', '1.1.0' );
+define( 'ACU_VERSION', '1.1.1' );
 define( 'ACU_PLUGIN_FILE', __FILE__ );
 define( 'ACU_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ACU_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
