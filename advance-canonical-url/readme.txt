@@ -2,8 +2,8 @@
 Contributors: usmanaliqureshi
 Tags: canonical, canonical url, duplicate content, seo, custom canonical
 Requires at least: 5.2
-Tested up to: 7.1
-Stable tag: 1.1.1
+Tested up to: 7.0
+Stable tag: 1.1.0
 Requires PHP: 7.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -81,10 +81,6 @@ The plugin includes the Freemius SDK for optional usage analytics and voluntary 
 For details about Freemius data handling, see the privacy policy linked from the consent and checkout interfaces.
 
 == Changelog ==
-
-= 1.1.1 =
-* Updated Freemius SDK to the latest version.
-* Tested with WordPress 7.1.
 
 = 1.1.0 =
 * Rebuilt the settings screen with a responsive, accessible interface.
